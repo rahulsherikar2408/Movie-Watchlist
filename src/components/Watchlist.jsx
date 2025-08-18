@@ -80,7 +80,7 @@ function Watchlist({ watchList, setWatchList, handleRemoveFromWatchList }) {
                     <img className='h-[10rem] w-[10rem] m-2 rounded-lg' src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} alt="" />
                     <div className='mx-10'>{movie.title}</div>
                   </td>
-                  <td>{movie.vote_average}</td>
+                  <td>{Math.round(movie.vote_average*10)/10}</td>
                   <td>{movie.popularity}</td>
                   <td>{genreIds[movie.genre_ids[0]]}</td>
                   <td onClick={() => handleRemoveFromWatchList(movie)} className='text-red-800 hover:cursor-pointer'>Delete</td>

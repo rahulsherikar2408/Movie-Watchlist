@@ -1,4 +1,5 @@
 import Banner from "./components/Banner";
+import MovieInfo from "./components/MovieInfo";
 import Movies from "./components/Movies";
 import Navbar from "./components/Navbar";
 import Watchlist from "./components/Watchlist";
@@ -38,6 +39,7 @@ function App() {
         <Routes>
           <Route path='/' element={<> <Banner/> <Movies watchList={watchList} handleAddToWatchList={handleAddToWatchList} handleRemoveFromWatchList={handleRemoveFromWatchList}/> </>} />
           <Route path='/watchlist' element={<Watchlist watchList={watchList} setWatchList={setWatchList} handleRemoveFromWatchList={handleRemoveFromWatchList}/>} />
+          <Route path='/movieinfo/:id' element={<MovieInfo watchList={watchList} setWatchList={setWatchList} handleAddToWatchList={handleAddToWatchList} handleRemoveFromWatchList={handleRemoveFromWatchList} />}/>
           <Route path='*' element={<h1>404 Not Found</h1>} />
         </Routes>
       </Router>
