@@ -10,6 +10,7 @@ import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 function App() {
 
   const [watchList, setWatchList] = useState([]);
+  const [category, setCategory] = useState("Category");
 
   const handleAddToWatchList = (movie) => {
     const newWatchList = [...watchList, movie];
@@ -35,9 +36,9 @@ function App() {
   return (
     <>
       <Router>
-        <Navbar />
+        <Navbar category={category} setCategory={setCategory}/>
         <Routes>
-          <Route path='/' element={<> <Banner/> <Movies watchList={watchList} handleAddToWatchList={handleAddToWatchList} handleRemoveFromWatchList={handleRemoveFromWatchList}/> </>} />
+          <Route path='/' element={<> <Banner/> <Movies category={category} watchList={watchList} handleAddToWatchList={handleAddToWatchList} handleRemoveFromWatchList={handleRemoveFromWatchList}/> </>} />
           <Route path='/watchlist' element={<Watchlist watchList={watchList} setWatchList={setWatchList} handleRemoveFromWatchList={handleRemoveFromWatchList}/>} />
           <Route path='/movieinfo/:id' element={<MovieInfo watchList={watchList} setWatchList={setWatchList} handleAddToWatchList={handleAddToWatchList} handleRemoveFromWatchList={handleRemoveFromWatchList} />}/>
           <Route path='*' element={<h1>404 Not Found</h1>} />
