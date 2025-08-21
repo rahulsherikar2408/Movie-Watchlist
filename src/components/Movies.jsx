@@ -3,7 +3,7 @@ import MovieCard from './MovieCard'
 import axios from 'axios'
 import Pagination from './Pagination';
 
-function Movies({ watchList, category, handleAddToWatchList, handleRemoveFromWatchList }) {
+function Movies({ searchQuery, watchList, category, handleAddToWatchList, handleRemoveFromWatchList }) {
 
   const [movies, setMovies] = useState([]);
   const [pageNo, setPageNo] = useState(1);
@@ -39,6 +39,16 @@ function Movies({ watchList, category, handleAddToWatchList, handleRemoveFromWat
     }
   }
 
+  const getSearchResultsData = async() => {
+    try {
+      const response = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=a9fe70b9e2d00af74cda9df5cf32b8e4&query=${searchQuery.toLowerCase()}&include_adult=false&language=en-US&page=${pageNo}`);
+      console.log(response.data.results)
+      setMovies(response.data.results)
+    } catch (error) {
+      console.log("Error fetching data from API:", error);
+    }
+  }
+
   useEffect(() => {
     switch(category) {
       case 'Popular Movies':
@@ -46,6 +56,10 @@ function Movies({ watchList, category, handleAddToWatchList, handleRemoveFromWat
         break;
       case 'Top Rated Movies':
         getTopRatedMoviesData();
+        break;
+      case `Search Results for ${searchQuery}`:
+        console.log(searchQuery)
+        getSearchResultsData();
         break;
       default:
         getTrendingMoviesData();
@@ -66,3 +80,4 @@ function Movies({ watchList, category, handleAddToWatchList, handleRemoveFromWat
 
 export default Movies
 
+// https://api.themoviedb.org/3/search/movie?query=man&include_adult=false&language=en-US&page=1
