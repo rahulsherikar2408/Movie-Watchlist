@@ -36,7 +36,7 @@ function MovieInfo({ watchList, handleAddToWatchList, handleRemoveFromWatchList 
         <div className="ml-60 mr-60 mt-10 flex flex-row flex-wrap justify-center items-start">
             <div className="m-5 flex flex-col items-center">
                 <img className="w-[400px] h-[600px] rounded-2xl object-cover" src={`https://image.tmdb.org/t/p/original${movieData.poster_path}`} alt={movieData.title} />
-                {doesContains() ? (<button onClick={() => handleRemoveFromWatchList(movie)} className="w-[400px] h-[70px] mt-3 bg-red-500/90 text-white font-bold text-2xl rounded-2xl transform transition-all duration-300">Delete From Watchlist</button>) : (<button onClick={() => handleAddToWatchList(movie)} className="w-[400px] h-[70px] mt-3 bg-green-500/90 text-white font-bold text-2xl rounded-2xl transform transition-all duration-300">Add To Watchlist</button>)}
+                {doesContains() ? (<button onClick={() => handleRemoveFromWatchList(movie)} className="w-[400px] h-[70px] mt-3 bg-red-500/90 text-white font-bold text-2xl rounded-2xl cursor-pointer transform transition-all duration-300">Delete From Watchlist</button>) : (<button onClick={() => handleAddToWatchList(movie)} className="w-[400px] h-[70px] mt-3 bg-green-500/90 text-white font-bold text-2xl rounded-2xl cursor-pointer transform transition-all duration-300">Add To Watchlist</button>)}
 
             </div>
             <div className="w-[1000px] flex flex-col flex-wrap items-start gap-3">
