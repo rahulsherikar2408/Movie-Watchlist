@@ -7,12 +7,14 @@ function Movies({ searchQuery, watchList, category, handleAddToWatchList, handle
 
   const [movies, setMovies] = useState([]);
   const [pageNo, setPageNo] = useState(1);
+  const [totalPages, setTotalPages] = useState();
 
 
   const getTrendingMoviesData = async() => {
     try {
       const response = await axios.get(`https://api.themoviedb.org/3/trending/movie/day?api_key=a9fe70b9e2d00af74cda9df5cf32b8e4&language=en-US&page=${pageNo}`);
       console.log(response.data.results)
+      setTotalPages(response.data.total_pages)
       setMovies(response.data.results)
     } catch (error) {
       console.log("Error fetching data from API:", error);
@@ -23,6 +25,7 @@ function Movies({ searchQuery, watchList, category, handleAddToWatchList, handle
     try {
       const response = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=a9fe70b9e2d00af74cda9df5cf32b8e4&language=en-US&page=${pageNo}`);
       console.log(response.data.results)
+      setTotalPages(response.data.total_pages)
       setMovies(response.data.results)
     } catch (error) {
       console.log("Error fetching data from API:", error);
@@ -33,6 +36,7 @@ function Movies({ searchQuery, watchList, category, handleAddToWatchList, handle
     try {
       const response = await axios.get(`https://api.themoviedb.org/3/movie/top_rated?api_key=a9fe70b9e2d00af74cda9df5cf32b8e4&language=en-US&page=${pageNo}`);
       console.log(response.data.results)
+      setTotalPages(response.data.total_pages)
       setMovies(response.data.results)
     } catch (error) {
       console.log("Error fetching data from API:", error);
@@ -43,6 +47,7 @@ function Movies({ searchQuery, watchList, category, handleAddToWatchList, handle
     try {
       const response = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=a9fe70b9e2d00af74cda9df5cf32b8e4&query=${searchQuery.toLowerCase()}&include_adult=false&language=en-US&page=${pageNo}`);
       console.log(response.data.results)
+      setTotalPages(response.data.total_pages)
       setMovies(response.data.results)
     } catch (error) {
       console.log("Error fetching data from API:", error);
@@ -73,7 +78,7 @@ function Movies({ searchQuery, watchList, category, handleAddToWatchList, handle
       <div className='flex flex-row flex-wrap justify-start'>{movies.map((movie) => {
           return <MovieCard key={movie.id} movie={movie} title={movie.title} poster_path={movie.poster_path} handleAddToWatchList = {handleAddToWatchList} handleRemoveFromWatchList={handleRemoveFromWatchList} watchList={watchList} />
         })}</div>
-      <Pagination pageNo={pageNo} setPageNo={setPageNo}/>
+      <Pagination pageNo={pageNo} setPageNo={setPageNo} totalPages={totalPages}/>
     </div>
   )
 }

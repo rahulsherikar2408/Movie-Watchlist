@@ -1,13 +1,41 @@
 
 
-function Pagination({pageNo, setPageNo}) {
-    
+function Pagination({ pageNo, setPageNo, totalPages }) {
+
     return (
-        <div className="bg-gray-400 p-4 mt-8 flex justify-center">
-            <div className={`text-2xl cursor-pointer hover:scale-130 duration-200 ${pageNo>1? 'hover:cursor-pointer':'hover:cursor-not-allowed hover:text-gray-500'}`} onClick={() => {(pageNo>1)?setPageNo(pageNo-1):''}}><i class="fa-solid fa-arrow-left"></i></div>
-            <div className="text-2xl font-bold ml-5 mr-5">{pageNo}</div>
-            <div className="text-2xl cursor-pointer hover:scale-130 duration-200" onClick={() => setPageNo(pageNo+1)}><i class="fa-solid fa-arrow-right"></i></div>
+        <div className="flex justify-center items-center space-x-4 mt-10">
+            {/* Previous Button */}
+            <button
+                onClick={() => pageNo > 1 && setPageNo(pageNo - 1)}
+                disabled={pageNo === 1}
+                className={`px-4 py-2 rounded-lg text-xl font-medium flex items-center gap-2 transition-all 
+      ${pageNo === 1
+                        ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                        : "bg-blue-500 text-white hover:bg-blue-600 hover:scale-105"}`}
+            >
+                <i className="fa-solid fa-arrow-left"></i> Prev
+            </button>
+
+            {/* Page Number Display */}
+            <div className="flex items-center space-x-2 text-xl font-bold">
+                <span className="text-blue-600">{pageNo}</span>
+                <span className="text-gray-600">/</span>
+                <span className="text-gray-600">{totalPages}</span>
+            </div>
+
+            {/* Next Button */}
+            <button
+                onClick={() => pageNo < totalPages && setPageNo(pageNo + 1)}
+                disabled={pageNo === totalPages}
+                className={`px-4 py-2 rounded-lg text-xl font-medium flex items-center gap-2 transition-all 
+      ${pageNo === totalPages
+                        ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                        : "bg-blue-500 text-white hover:bg-blue-600 hover:scale-105"}`}
+            >
+                Next <i className="fa-solid fa-arrow-right"></i>
+            </button>
         </div>
+
     )
 }
 
