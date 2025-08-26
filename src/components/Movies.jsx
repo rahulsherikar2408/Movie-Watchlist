@@ -9,10 +9,13 @@ function Movies({ searchQuery, watchList, category, handleAddToWatchList, handle
   const [pageNo, setPageNo] = useState(1);
   const [totalPages, setTotalPages] = useState();
 
+  // Taking api key from .env file
+  const tmdb_api_key = import.meta.env.VITE_TMDB_API_KEY;
+
 
   const getTrendingMoviesData = async() => {
     try {
-      const response = await axios.get(`https://api.themoviedb.org/3/trending/movie/day?api_key=a9fe70b9e2d00af74cda9df5cf32b8e4&language=en-US&page=${pageNo}`);
+      const response = await axios.get(`https://api.themoviedb.org/3/trending/movie/day?api_key=${tmdb_api_key}&language=en-US&page=${pageNo}`);
       console.log(response.data.results)
       setTotalPages(response.data.total_pages)
       setMovies(response.data.results)
@@ -23,7 +26,7 @@ function Movies({ searchQuery, watchList, category, handleAddToWatchList, handle
 
   const getPopularMoviesData = async() => {
     try {
-      const response = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=a9fe70b9e2d00af74cda9df5cf32b8e4&language=en-US&page=${pageNo}`);
+      const response = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${tmdb_api_key}&language=en-US&page=${pageNo}`);
       console.log(response.data.results)
       setTotalPages(response.data.total_pages)
       setMovies(response.data.results)
@@ -34,7 +37,7 @@ function Movies({ searchQuery, watchList, category, handleAddToWatchList, handle
 
   const getTopRatedMoviesData = async() => {
     try {
-      const response = await axios.get(`https://api.themoviedb.org/3/movie/top_rated?api_key=a9fe70b9e2d00af74cda9df5cf32b8e4&language=en-US&page=${pageNo}`);
+      const response = await axios.get(`https://api.themoviedb.org/3/movie/top_rated?api_key=${tmdb_api_key}&language=en-US&page=${pageNo}`);
       console.log(response.data.results)
       setTotalPages(response.data.total_pages)
       setMovies(response.data.results)
@@ -45,7 +48,7 @@ function Movies({ searchQuery, watchList, category, handleAddToWatchList, handle
 
   const getSearchResultsData = async() => {
     try {
-      const response = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=a9fe70b9e2d00af74cda9df5cf32b8e4&query=${searchQuery.toLowerCase()}&include_adult=false&language=en-US&page=${pageNo}`);
+      const response = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${tmdb_api_key}&query=${searchQuery.toLowerCase()}&include_adult=false&language=en-US&page=${pageNo}`);
       console.log(response.data.results)
       setTotalPages(response.data.total_pages)
       setMovies(response.data.results)
@@ -83,6 +86,4 @@ function Movies({ searchQuery, watchList, category, handleAddToWatchList, handle
   )
 }
 
-export default Movies
-
-// https://api.themoviedb.org/3/search/movie?query=man&include_adult=false&language=en-US&page=1
+export default Movies;
