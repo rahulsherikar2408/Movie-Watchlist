@@ -15,36 +15,36 @@ function Navbar({ category, setCategory, searchQuery, setSearchQuery }) {
   }
 
   return (
-    <div className="flex items-center justify-between px-8 py-4 sticky top-0 z-50 
+    <div className="flex flex-wrap flex-row justify-items-start items-center-safe w-full h-[50px] px-8 sticky top-0 z-50 
                 bg-white/80 backdrop-blur-md shadow-lg border-b border-gray-200">
 
       {/* Left side - Logo */}
-      <div className="flex items-center space-x-4">
+      <div className="mr-20 flex items-center justify-center space-x-4">
         <img
-          className="w-12 h-12 rounded-lg shadow-md"
+          className="w-6 h-6 rounded-lg shadow-md"
           src={movieLogo}
           alt="movie"
         />
         <Link
           to="/"
           onClick={() => window.location.reload()}
-          className="text-blue-500 font-extrabold text-3xl hover:text-blue-600 transition"
+          className="text-blue-500 font-extrabold text-xl hover:text-blue-600 transition"
         >
           Movies
         </Link>
       </div>
 
       {/* Center - Nav Links */}
-      <div className="absolute left-1/4 transform -translate-x-1/4 flex space-x-10">
+      <div className="flex justify-center items-center space-x-10">
         <Link
           to="/"
-          className="mt-2 text-gray-700 text-2xl font-semibold hover:text-blue-500 transition-colors"
+          className="text-gray-700 text-md font-semibold hover:text-blue-500 transition-colors"
         >
           Home
         </Link>
         <Link
           to="/watchlist"
-          className="mt-2 text-gray-700 text-2xl font-semibold hover:text-blue-500 transition-colors"
+          className="text-gray-700 text-md font-semibold hover:text-blue-500 transition-colors"
         >
           Watchlist
         </Link>
@@ -53,12 +53,12 @@ function Navbar({ category, setCategory, searchQuery, setSearchQuery }) {
         <div className="relative">
           <div
             onClick={() => setOpen(!open)}
-            className="mt-2 flex justify-center items-center space-x-1 cursor-pointer"
+            className="flex justify-center items-center space-x-1 cursor-pointer"
           >
-            <div className="text-2xl text-gray-700 font-semibold hover:text-blue-500">
+            <div className="text-md text-gray-700 font-semibold hover:text-blue-500">
               Category
             </div>
-            <div className="mt-1">
+            <div className="">
               <i className={`fa-solid fa-chevron-${open ? "up" : "down"}`}></i>
             </div>
           </div>
@@ -68,30 +68,30 @@ function Navbar({ category, setCategory, searchQuery, setSearchQuery }) {
             <ul className="absolute mt-2 bg-white shadow-lg rounded-lg w-60 p-2 z-50">
               <li
                 onClick={() => handleSelect("Trending Movies")}
-                className="text-2xl text-gray-700 font-semibold hover:text-blue-500 cursor-pointer p-2"
+                className="text-md text-gray-700 font-semibold hover:text-blue-500 cursor-pointer p-2"
               >
                 Trending Movies
               </li>
               <li
                 onClick={() => handleSelect("Popular Movies")}
-                className="text-2xl text-gray-700 font-semibold hover:text-blue-500 cursor-pointer p-2"
+                className="text-md text-gray-700 font-semibold hover:text-blue-500 cursor-pointer p-2"
               >
                 Popular Movies
               </li>
               <li
                 onClick={() => handleSelect("Top Rated Movies")}
-                className="text-2xl text-gray-700 font-semibold hover:text-blue-500 cursor-pointer p-2"
+                className="text-md text-gray-700 font-semibold hover:text-blue-500 cursor-pointer p-2"
               >
                 Top Rated Movies
               </li>
             </ul>
           )}
         </div>
-        <div class="flex px-1 py-1 rounded-full border font-semibold text-gray-700 bg-white/80 backdrop-blur-md border-blue-500 overflow-hidden">
-          <input onChange={handleSearch} value={searchQuery} type='email' placeholder='Search Something...' className="outline-none border-none pl-4 text-xl" />
+        <div class="w-[225px] h-[30px] flex justify-center items-center rounded-full border font-semibold text-gray-700 bg-white/80 backdrop-blur-md border-blue-500 overflow-hidden">
+          <input onChange={handleSearch} value={searchQuery} type='email' placeholder='Search Something...' className="w-[170px] h-[30px] ml-2 outline-none border-none text-md" />
           <button type='button'
             onClick={() => handleSelect(`Search Results for ${searchQuery}`)}
-            className="ml-2 bg-blue-600 hover:bg-blue-700 cursor-pointer transition-all text-white text-sm rounded-full px-5 py-2.5"><i class="fa-solid fa-magnifying-glass" style={{ color: "#ffffff;" }}></i></button>
+            className="w-[40px] h-[25px] bg-blue-600 hover:bg-blue-700 cursor-pointer transition-all text-white text-sm rounded-full"><i class="fa-solid fa-magnifying-glass" style={{ color: "#ffffff;" }}></i></button>
         </div>
       </div>
 
