@@ -76,8 +76,8 @@ function Movies({ searchQuery, watchList, category, handleAddToWatchList, handle
   }, [pageNo,category])
 
   return (
-    <div className='p-5'>
-      <div className='text-2xl m-5 font-bold text-center'>{category==='Category'?('Trending Movies'):category}</div>
+    <div className='p-2'>
+      <div className='text-lg mb-3 font-bold text-center'>{category==='Category'?('Trending Movies'):category}</div>
       <div className='flex flex-row flex-wrap justify-start'>{movies.map((movie) => {
           return <MovieCard key={movie.id} movie={movie} title={movie.title} poster_path={movie.poster_path} handleAddToWatchList = {handleAddToWatchList} handleRemoveFromWatchList={handleRemoveFromWatchList} watchList={watchList} />
         })}</div>

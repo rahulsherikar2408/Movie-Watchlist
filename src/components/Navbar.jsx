@@ -91,7 +91,7 @@ function Navbar({ category, setCategory, searchQuery, setSearchQuery }) {
           <input onChange={handleSearch} value={searchQuery} type='email' placeholder='Search Something...' className="w-[170px] h-[30px] ml-2 outline-none border-none text-md" />
           <button type='button'
             onClick={() => handleSelect(`Search Results for ${searchQuery}`)}
-            className="w-[40px] h-[25px] bg-blue-600 hover:bg-blue-700 cursor-pointer transition-all text-white text-sm rounded-full"><i class="fa-solid fa-magnifying-glass" style={{ color: "#ffffff;" }}></i></button>
+            className="w-[40px] h-[24px] bg-blue-600 hover:bg-blue-700 cursor-pointer transition-all text-white text-sm rounded-full"><i class="fa-solid fa-magnifying-glass" style={{ color: "#ffffff;" }}></i></button>
         </div>
       </div>
 
