@@ -41,31 +41,31 @@ function Watchlist({ watchList, setWatchList, handleRemoveFromWatchList }) {
   return (
     <>
 
-      <div className='flex justify-center flex-wrap m-5'>
+      <div className='flex justify-center flex-wrap m-3'>
         {genreList.map((genre) => {
           return (
-            <div onClick={()=>handleFilter(genre)} className={ (currGenre===genre)?'flex justify-center items-center mr-4 my-2 h-[50px] w-[150px] bg-blue-400 rounded-xl text-white text-xl font-bold hover:bg-blue-400 cursor-pointer duration-200 hover:scale-110' : 'flex justify-center items-center mr-4 my-2 h-[50px] w-[150px] bg-gray-400/50 rounded-xl text-white text-xl font-bold hover:bg-blue-400 cursor-pointer duration-200 hover:scale-110'}>{genre}</div>
+            <div onClick={()=>handleFilter(genre)} className={ (currGenre===genre)?'flex justify-center items-center mr-3 my-2 h-[35px] w-[110px] bg-blue-400 rounded-md text-white text-sm font-bold hover:cursor-pointer duration-200 hover:scale-110' : 'flex justify-center items-center mr-3 my-2 h-[35px] w-[110px] bg-gray-400/50 rounded-md text-white text-sm font-bold hover:bg-blue-400 cursor-pointer duration-200 hover:scale-110'}>{genre}</div>
           )
         })}
         
       </div>
 
-      <div className='flex justify-center my-5'>
-        <input onChange={handleSearchMovieChange} value={search} className='bg-gray-200 h-[50px] w-[300px] text-xl px-4 outline-none' placeholder='Search for Movies' type="text" />
+      <div className='flex justify-center'>
+        <input onChange={handleSearchMovieChange} value={search} className='bg-gray-200 h-[35px] w-[200px] text-sm px-2 outline-none' placeholder='Search for Movies' type="text" />
       </div>
 
-      <div className='overflow-hidden rounded-lg m-8 border border-gray-200 shadow-md'>
-        <table className='w-full text-2xl text-gray-700 text-center'>
+      <div className='overflow-hidden rounded-lg m-5 border border-gray-200 shadow-md'>
+        <table className='w-full text-md text-gray-700 text-center'>
           <thead className='border-b-2 border-gray-200'>
             <tr>
-              <th className='p-3'>Name</th>
-              <th className='flex justify-center items-center p-3 space-x-3'>
+              <th className='pr-20'>Name</th>
+              <th className='flex justify-center items-center p-2 pr-20 space-x-3'>
                 <div onClick={sortIncreasing} className='hover:cursor-pointer'><i class="fa-solid fa-arrow-up"></i></div>
                 <div>Rating</div>
                 <div onClick={sortDecreasing} className='hover:cursor-pointer'><i class="fa-solid fa-arrow-down"></i></div>
               </th>
-              <th>Popularity</th>
-              <th>Genre</th>
+              <th className='pr-20'>Popularity</th>
+              <th className='pr-10'>Genre</th>
             </tr>
           </thead>
           {watchList.filter((movie) => {
@@ -76,14 +76,14 @@ function Watchlist({ watchList, setWatchList, handleRemoveFromWatchList }) {
             return (
               <tbody>
                 <tr className='border-b-2 border-gray-200'>
-                  <td className='flex items-center px-6 py-4'>
-                    <img className='h-[10rem] w-[10rem] m-2 rounded-lg' src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} alt="" />
+                  <td className='flex items-center px-4 py-4'>
+                    <img className='h-[7rem] w-[6rem] rounded-md' src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} alt="" />
                     <div className='mx-10'>{movie.title}</div>
                   </td>
-                  <td>{Math.round(movie.vote_average*10)/10}</td>
-                  <td>{movie.popularity}</td>
-                  <td>{genreIds[movie.genre_ids[0]]}</td>
-                  <td onClick={() => handleRemoveFromWatchList(movie)} className='text-red-800 hover:cursor-pointer'>Delete</td>
+                  <td className='pr-20'>{Math.round(movie.vote_average*10)/10}</td>
+                  <td className='pr-20'>{movie.popularity}</td>
+                  <td className='pr-10'>{genreIds[movie.genre_ids[0]]}</td>
+                  <td onClick={() => handleRemoveFromWatchList(movie)} className='text-red-800 hover:cursor-pointer pr-15'>Delete</td>
                 </tr>
               </tbody>
             )
@@ -97,6 +97,3 @@ function Watchlist({ watchList, setWatchList, handleRemoveFromWatchList }) {
 }
 
 export default Watchlist;
-
-{/* <i class="fa-solid fa-arrow-up"></i>
-<i class="fa-solid fa-arrow-down"></i> */}
