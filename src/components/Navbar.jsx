@@ -15,11 +15,11 @@ function Navbar({ category, setCategory, searchQuery, setSearchQuery }) {
   }
 
   return (
-    <div className="flex flex-wrap flex-row justify-items-start items-center-safe w-full h-[50px] px-8 sticky top-0 z-50 
+    <div className="@container overflow-x-hidden flex flex-wrap flex-row justify-between justify-items-start items-center-safe w-full h-[50px] px-8 sticky top-0 z-50 
                 bg-white/80 backdrop-blur-md shadow-lg border-b border-gray-200">
 
       {/* Left side - Logo */}
-      <div className="mr-20 flex items-center justify-center space-x-4">
+      <div className="flex items-center justify-center space-x-4">
         <img
           className="w-6 h-6 rounded-lg shadow-md"
           src={movieLogo}
@@ -35,22 +35,22 @@ function Navbar({ category, setCategory, searchQuery, setSearchQuery }) {
       </div>
 
       {/* Center - Nav Links */}
-      <div className="flex justify-center items-center space-x-10">
+      <div className="flex justify-center items-center space-x-10 @max-[766px]:w-0">
         <Link
           to="/"
-          className="text-gray-700 text-md font-semibold hover:text-blue-500 transition-colors"
+          className="text-gray-700 text-md font-semibold hover:text-blue-500 transition-colors @max-[766px]:invisible"
         >
           Home
         </Link>
         <Link
           to="/watchlist"
-          className="text-gray-700 text-md font-semibold hover:text-blue-500 transition-colors"
+          className="text-gray-700 text-md font-semibold hover:text-blue-500 transition-colors @max-[766px]:invisible"
         >
           Watchlist
         </Link>
 
         {/* Dropdown */}
-        <div className="relative">
+        <div className="relative @max-[766px]:invisible">
           <div
             onClick={() => setOpen(!open)}
             className="flex justify-center items-center space-x-1 cursor-pointer"
@@ -87,7 +87,7 @@ function Navbar({ category, setCategory, searchQuery, setSearchQuery }) {
             </ul>
           )}
         </div>
-        <div class="w-[225px] h-[30px] flex justify-center items-center rounded-full border font-semibold text-gray-700 bg-white/80 backdrop-blur-md border-blue-500 overflow-hidden">
+        <div class="@max-[766px]:absolute w-[225px] h-[30px] flex justify-center items-center rounded-full border font-semibold text-gray-700 bg-white/80 backdrop-blur-md border-blue-500 overflow-hidden">
           <input onChange={handleSearch} value={searchQuery} type='email' placeholder='Search Something...' className="w-[170px] h-[30px] ml-2 outline-none border-none text-md" />
           <button type='button'
             onClick={() => handleSelect(`Search Results for ${searchQuery}`)}
@@ -95,6 +95,9 @@ function Navbar({ category, setCategory, searchQuery, setSearchQuery }) {
         </div>
       </div>
 
+      <div className="flex text-xl @min-[766px]:invisible">
+        <i class="fa-solid fa-bars"></i>
+      </div>
     </div>
   );
 }

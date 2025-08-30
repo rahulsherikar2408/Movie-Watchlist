@@ -54,7 +54,7 @@ function Watchlist({ watchList, setWatchList, handleRemoveFromWatchList }) {
         <input onChange={handleSearchMovieChange} value={search} className='bg-gray-200 h-[35px] w-[200px] text-sm px-2 outline-none' placeholder='Search for Movies' type="text" />
       </div>
 
-      <div className='overflow-hidden rounded-lg m-5 border border-gray-200 shadow-md'>
+      <div className='overflow-x-scroll rounded-lg m-5 border border-gray-200 shadow-md'>
         <table className='w-full text-md text-gray-700 text-center'>
           <thead className='border-b-2 border-gray-200'>
             <tr>
